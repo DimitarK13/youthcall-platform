@@ -1,4 +1,4 @@
-module.exports = data = [
+const data = [
   {
     name: 'Association Novus',
     username: 'novusorg',
@@ -98,3 +98,32 @@ module.exports = data = [
     ],
   },
 ];
+
+const accounts = [];
+
+class Account {
+  constructor(name, username, password, linkAcc) {
+    this.name = name;
+    this.username = username;
+    this.password = password;
+    this.linkAcc = linkAcc;
+    this.created = new Date();
+
+    this.setExpires();
+  }
+
+  setExpires() {
+    this.expires = this.created.setMonth(this.created.getMonth() + 3);
+  }
+}
+
+const novus = new Account(
+  'Association Novus',
+  'associationnovus',
+  'associationnovus@4927',
+  'https://www.facebook.com/ZdruzenieNovus'
+);
+
+accounts.push(novus);
+
+module.exports = { data, accounts };
