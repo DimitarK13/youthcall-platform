@@ -102,26 +102,31 @@ const data = [
 const accounts = [];
 
 class Account {
-  constructor(name, username, password, linkAcc) {
+  constructor(name, username, password, linkAcc, expiresMonths = 3, postLimit) {
     this.name = name;
     this.username = username;
     this.password = password;
     this.linkAcc = linkAcc;
-    this.created = new Date();
+    this.created = String(new Date());
+    this.postLimit = postLimit;
 
-    this.setExpires();
+    this.setExpires(new Date(this.created), expiresMonths);
   }
 
-  setExpires() {
-    this.expires = this.created.setMonth(this.created.getMonth() + 3);
+  setExpires(date, months) {
+    const expiresIn = date.setMonth(date.getMonth() + months);
+
+    this.expires = new Date(expiresIn);
   }
 }
 
 const novus = new Account(
   'Association Novus',
   'associationnovus',
-  'associationnovus@4927',
-  'https://www.facebook.com/ZdruzenieNovus'
+  'associationnovus',
+  'https://www.facebook.com/ZdruzenieNovus',
+  12,
+  10
 );
 
 accounts.push(novus);
