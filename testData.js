@@ -1,10 +1,9 @@
 const data = [
   {
     name: 'Association Novus',
-    username: 'novusorg',
-    password: 'novusorg',
     allPosts: [
       {
+        id: 1,
         type: 'course',
         name: '10 Години Новус',
         image:
@@ -13,12 +12,12 @@ const data = [
         when: '17.02.2024',
         who: '15-25',
         link: 'https://www.facebook.com/ZdruzenieNovus',
-        linkAcc: 'https://www.facebook.com/ZdruzenieNovus',
         deadline: '15.02.2024',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       },
       {
+        id: 2,
         type: 'activity',
         name: '20 Години Новус',
         image:
@@ -27,12 +26,12 @@ const data = [
         when: '17.02.2024',
         who: '15-25',
         link: 'https://www.facebook.com/ZdruzenieNovus',
-        linkAcc: 'https://www.facebook.com/ZdruzenieNovus',
         deadline: '15.02.2024',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       },
       {
+        id: 3,
         type: 'volunteer',
         name: '20 Години Новус',
         image:
@@ -41,7 +40,6 @@ const data = [
         when: '17.02.2024',
         who: '15-25',
         link: 'https://www.facebook.com/ZdruzenieNovus',
-        linkAcc: 'https://www.facebook.com/ZdruzenieNovus',
         deadline: '15.02.2024',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -50,10 +48,9 @@ const data = [
   },
   {
     name: 'SourceMX Academy',
-    username: 'smxacademy',
-    password: 'smxacademy',
     allPosts: [
       {
+        id: 4,
         type: 'course',
         name: 'JavaScript Course',
         image:
@@ -62,12 +59,12 @@ const data = [
         when: '10.03.2024',
         who: '15+',
         link: 'https://smx.mk/live/voveden-kurs-za-programiranje-so-javascript/',
-        linkAcc: 'https://smx.mk/',
         deadline: '09.03.2024',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       },
       {
+        id: 5,
         type: 'project',
         name: 'JavaScript Course',
         image:
@@ -76,12 +73,12 @@ const data = [
         when: '10.03.2024',
         who: '15+',
         link: 'https://smx.mk/live/voveden-kurs-za-programiranje-so-javascript/',
-        linkAcc: 'https://smx.mk/',
         deadline: '09.03.2024',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       },
       {
+        id: 6,
         type: 'volunteer',
         name: 'JavaScript Course',
         image:
@@ -90,7 +87,6 @@ const data = [
         when: '10.03.2024',
         who: '15+',
         link: 'https://smx.mk/live/voveden-kurs-za-programiranje-so-javascript/',
-        linkAcc: 'https://smx.mk/',
         deadline: '09.03.2024',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -102,11 +98,11 @@ const data = [
 const accounts = [];
 
 class Account {
-  constructor(name, username, password, linkAcc, expiresMonths = 3, postLimit) {
+  constructor(name, username, password, website, expiresMonths = 3, postLimit) {
     this.name = name;
     this.username = username;
     this.password = password;
-    this.linkAcc = linkAcc;
+    this.website = website;
     this.created = String(new Date());
     this.postLimit = postLimit;
 
@@ -124,7 +120,7 @@ const novus = new Account(
   'Association Novus',
   'associationnovus',
   'associationnovus',
-  'https://www.facebook.com/ZdruzenieNovus',
+  'https://associationnovus.org/',
   12,
   10
 );

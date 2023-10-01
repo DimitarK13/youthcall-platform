@@ -9,4 +9,38 @@ const getPosts = (req, res, next) => {
   next();
 };
 
-module.exports = getPosts;
+const newPost = (req, res, next) => {
+  const {
+    id,
+    type,
+    name,
+    image,
+    where,
+    when,
+    who,
+    link,
+    deadline,
+    description,
+  } = req.body;
+
+  const newPost = {
+    id,
+    type,
+    name,
+    image,
+    where,
+    when,
+    who,
+    link,
+    deadline,
+    description,
+  };
+
+  console.log(newPost);
+
+  res.status(200).send(`Post (${name}, id: ${id}) successfully created`);
+
+  next();
+};
+
+module.exports = { getPosts, newPost };
