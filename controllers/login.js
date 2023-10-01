@@ -1,6 +1,6 @@
 const { accounts } = require('../testData');
 
-const login = (req, res, next) => {
+const login = (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password)
@@ -20,8 +20,6 @@ const login = (req, res, next) => {
     res.status(401).send('The password is incorect');
 
   res.status(200).send(`${account.name} (${account.username}) Logged In`);
-
-  next();
 };
 
 module.exports = login;

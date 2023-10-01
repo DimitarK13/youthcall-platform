@@ -1,15 +1,13 @@
-const { data } = require('../testData');
+const { data, allPosts } = require('../testData');
 
-const getPosts = (req, res, next) => {
+const getPosts = (req, res) => {
   res.status(200).json({
     success: true,
     data: data,
   });
-
-  next();
 };
 
-const newPost = (req, res, next) => {
+const newPost = (req, res) => {
   const {
     id,
     type,
@@ -38,9 +36,20 @@ const newPost = (req, res, next) => {
 
   console.log(newPost);
 
-  res.status(200).send(`Post (${name}, id: ${id}) successfully created`);
-
-  next();
+  res.status(200).json(`Post (${name}, id: ${id}) successfully created`);
 };
 
-module.exports = { getPosts, newPost };
+const deletePost = (req, res) => {
+  const post = allPosts.find((post) => post.id === Number(req.params.id));
+
+  if (!post) {
+    return res
+      .status(404)
+      .json({ success: false, msg: `no post with id ${req.params.id}` });
+  }
+  const newPosts = allPosts.filter((post) => post.id !== Number(req.params.id));
+
+  return res.status(200).json({ success: true, data: newPosts });
+};
+
+module.exports = { getPosts, newPost, deletePost };
