@@ -36,7 +36,12 @@ const newPost = (req, res) => {
 
   console.log(newPost);
 
-  res.status(200).json(`Post (${name}, id: ${id}) successfully created`);
+  res
+    .status(200)
+    .json({
+      succes: true,
+      data: `Post (${name}, id: ${id}) successfully created`,
+    });
 };
 
 const deletePost = (req, res) => {
