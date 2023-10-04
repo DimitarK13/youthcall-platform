@@ -3,6 +3,12 @@ const app = express();
 const port = 7777;
 const posts = require('./routes/posts');
 const login = require('./routes/login');
+const mongoose = require('mongoose');
+mongoose
+  .connect(
+    'mongodb+srv://dimitar13:xecz7qUfj7R8Tzg4@youthcall.bgoivaa.mongodb.net/?retryWrites=true&w=majority'
+  )
+  .catch((error) => handleError(error));
 
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: false }));
