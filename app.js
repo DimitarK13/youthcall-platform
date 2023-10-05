@@ -6,7 +6,7 @@ const login = require('./routes/login');
 const mongoose = require('mongoose');
 mongoose
   .connect(
-    'mongodb+srv://dimitar13:xecz7qUfj7R8Tzg4@youthcall.bgoivaa.mongodb.net/?retryWrites=true&w=majority'
+    'mongodb+srv://<username>:<password>@youthcall.bgoivaa.mongodb.net/?retryWrites=true&w=majority'
   )
   .catch((error) => handleError(error));
 
