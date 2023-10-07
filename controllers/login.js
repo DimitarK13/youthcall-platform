@@ -9,7 +9,6 @@ const login = (req, res) => {
       .json({ success: false, data: 'Please enter username and password' });
 
   const account = accounts.find((acc) => acc.username === username);
-  console.log(account);
 
   if (!account)
     res.status(401).json({
@@ -20,12 +19,10 @@ const login = (req, res) => {
   if (account.password !== password)
     res.status(401).json({ success: false, data: 'The password is incorect' });
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      data: `${account.name} (${account.username}) Logged In`,
-    });
+  res.status(200).json({
+    success: true,
+    data: `${account.name} (${account.username}) Logged In`,
+  });
 };
 
 module.exports = login;
