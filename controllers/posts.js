@@ -1,46 +1,5 @@
 const { allPosts } = require('../testData');
-const mongoose = require('mongoose');
-
-const postSchema = new mongoose.Schema({
-  type: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  where: {
-    type: String,
-    required: true,
-  },
-  when: {
-    type: String,
-    required: true,
-  },
-  who: {
-    type: String,
-    required: true,
-  },
-  link: {
-    type: String,
-    required: true,
-  },
-  deadline: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-});
-
-const Post = mongoose.model('Post', postSchema);
+const Post = require('../models/Post');
 
 const getPosts = async (req, res) => {
   try {
@@ -54,38 +13,12 @@ const getPosts = async (req, res) => {
   }
 };
 
-const newPost = (req, res) => {
-  const {
-    id,
-    type,
-    name,
-    image,
-    where,
-    when,
-    who,
-    link,
-    deadline,
-    description,
-  } = req.body;
+const newPost = async (req, res) => {
+  const post = await Post.create(req.body);
 
-  const newPost = {
-    id,
-    type,
-    name,
-    image,
-    where,
-    when,
-    who,
-    link,
-    deadline,
-    description,
-  };
-
-  console.log(newPost);
-
-  res.status(200).json({
+  res.status(201).json({
     succes: true,
-    data: `Post (${name}, id: ${id}) successfully created`,
+    data: `Post (${post.name}) successfully created`,
   });
 };
 
