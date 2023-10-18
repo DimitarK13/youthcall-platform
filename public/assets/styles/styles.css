@@ -144,6 +144,7 @@ button {
 
 .btn--primary:hover,
 .btn--primary:focus {
+  color: var(--neutral-clr-100);
   background-color: var(--primary-clr-500);
 }
 
@@ -227,7 +228,11 @@ button {
 }
 
 .header-l {
+  margin-bottom: 1.5rem;
   font-size: var(--heading-fs-800);
+  color: var(--primary-clr-400);
+  font-weight: var(--extrabold-fw);
+  line-height: 1.2;
 }
 
 .header-m {
@@ -444,5 +449,54 @@ nav {
     height: 100%;
     z-index: -1;
     object-fit: cover;
+  }
+}
+
+/* Our Goal */
+
+.our-goal {
+  display: grid;
+  place-items: center;
+
+  padding: var(--spacing-900) var(--spacing-300);
+  margin-block: var(--spacing-900);
+}
+
+.our-goal__container {
+  max-width: 1100px;
+
+  background-color: var(--neutral-clr-100);
+  border-radius: 10px;
+  overflow: hidden;
+
+  box-shadow: var(--shadow-300);
+}
+
+.our-goal__container-image {
+  margin-inline: auto;
+}
+
+.our-goal__container-content {
+  padding: var(--spacing-200);
+}
+
+.our-goal__container-content-button {
+  margin-top: var(--spacing-400);
+}
+
+@media (min-width: 768px) {
+  .our-goal__container-content {
+    padding: var(--spacing-400);
+  }
+}
+
+@media (min-width: 1180px) {
+  .our-goal__container {
+    display: flex;
+    align-items: center;
+  }
+
+  .our-goal__container-content {
+    padding: var(--spacing-500);
   }
 }
