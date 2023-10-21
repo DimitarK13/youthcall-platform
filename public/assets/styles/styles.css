@@ -242,10 +242,15 @@ button {
 
 .background-primary {
   background-color: var(--primary-clr-400);
+  color: var(--neutral-clr-100);
+}
+
+.background-primary .header-xl {
+  color: var(--neutral-clr-100);
 }
 
 .background-light-blur {
-  background-color: rgb(255 255 255 / 0.65);
+  background-color: rgb(255 255 255 / 0.85);
   backdrop-filter: blur(1rem);
 }
 
