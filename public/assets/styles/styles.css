@@ -203,6 +203,10 @@ button {
   padding-block: var(--spacing-900);
 }
 
+.margin-inline--auto {
+  margin-inline: auto;
+}
+
 .text--s {
   max-width: 570px;
 }
@@ -523,10 +527,6 @@ nav {
 
 /* Financers */
 
-.financers__text {
-  margin-inline: auto;
-}
-
 .financers__logos {
   margin-inline: auto;
   padding-block: var(--spacing-300);
@@ -546,10 +546,6 @@ nav {
 }
 
 /* FAQs */
-
-.faq__text {
-  margin-inline: auto;
-}
 
 .faq__questions {
   text-align: left;
