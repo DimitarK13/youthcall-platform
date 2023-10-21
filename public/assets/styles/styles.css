@@ -571,3 +571,50 @@ nav {
 .faq__questions-single-answer[opened] {
   display: block;
 }
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.login__form {
+  flex-basis: 400px;
+  width: 100%;
+}
+
+.login__form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-field__input {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: var(--border-200);
+}
+
+.input-field__btn {
+  margin-top: var(--spacing-500);
+}
+
+@media (min-width: 996px) {
+  .login {
+    flex-direction: row;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-800);
+}

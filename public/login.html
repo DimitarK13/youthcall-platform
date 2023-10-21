@@ -74,7 +74,83 @@
     </nav>
 
     <main>
-      <h1>Log in Page</h1>
+      <div class="container">
+        <section class="login" aria-label="Log In">
+          <form class="login__form" action="/">
+            <div class="login__form-inputs">
+              <div class="input-field">
+                <label class="input-field__label" for="username"
+                  >Корисничко име</label
+                >
+                <input
+                  class="input-field__input"
+                  type="text"
+                  name="username"
+                  id="username"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="input-field">
+                <label class="input-field__label" for="password">Лозинка</label>
+                <input
+                  class="input-field__input"
+                  type="password"
+                  name="password"
+                  id="password"
+                />
+              </div>
+            </div>
+
+            <button class="input-field__btn btn btn--primary" type="submit">
+              Најави Се
+            </button>
+          </form>
+
+          <div class="login__learn-more">
+            <a class="btn btn--secondary" href="#info">Како до акаунт</a>
+          </div>
+        </section>
+
+        <section
+          class="info padding-block--xl text--center"
+          aria-label="How to get an account"
+          id="info"
+        >
+          <div>
+            <h2 class="header-l">Дали акаунт е за вас</h2>
+            <p class="text--m margin-inline--auto">
+              Доколку сте младинска организација, институција или компанија која
+              нуди можности за млади за активно вклучување во проекти, пракса,
+              настани и волонтирање, акаунтот на нашата платформа ви овозможува
+              лесно објавување на информации. Ова ќе ги направи вашите можности
+              достапни до сите млади кои бараат дополнителни ангажмани и личен
+              развој.
+            </p>
+          </div>
+          <div>
+            <h2 class="header-l">Видови акаунти</h2>
+            <p class="text--m margin-inline--auto">
+              Нашата платформа која има за цел да ги опреми младите со
+              информации за проекти, обуки, активности и друго, ви нудиме три
+              видови на акаунти за вашите различни потреби и преференции.
+              3-месечениот акаунт е перфектен за краткорочно истражување на
+              нашата платформа, 6-месечен акаунт ви е балансирана средна опција
+              и за вас кои сте посветени на долгорочно растење и истражување за
+              вас го имаме 12-месечниот акаунт. Изберете акаунт според вашите
+              потреби.
+            </p>
+          </div>
+          <div>
+            <h2 class="header-l">Како до акаунт</h2>
+            <p class="text--m margin-inline--auto">
+              Ако го пронајдовте акаунтот кој ги задоволува вашите потреби,
+              следен чекор е регистрирање на вашиот акаунт. Во моментот не е
+              возможно регистрирање преку нашата платформа и тоа ќе треба да го
+              направите со контактирање на Димитар Калапоцев.
+            </p>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer>
