@@ -17,3 +17,13 @@ const openNav = () => {
   navList.setAttribute('aria-expanded', 'false');
   navToggleIcon.textContent = 'menu';
 };
+
+const faqs = document.querySelectorAll('.faq__questions-single');
+
+faqs.forEach((single) => {
+  single.addEventListener('click', () => {
+    single
+      .querySelector('.faq__questions-single-answer')
+      .toggleAttribute('opened');
+  });
+});

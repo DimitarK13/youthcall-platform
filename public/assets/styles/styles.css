@@ -195,6 +195,10 @@ button {
   margin-block: var(--spacing-900);
 }
 
+.margin-top--m {
+  margin-top: var(--spacing-500);
+}
+
 .padding-block--xl {
   padding-block: var(--spacing-900);
 }
@@ -209,6 +213,10 @@ button {
 
 .text--l {
   max-width: 800px;
+}
+
+.text--center {
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -429,7 +437,6 @@ nav {
 
 @media (min-width: 996px) {
   .hero__content-cards {
-    margin-top: var(--spacing-500);
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -516,16 +523,12 @@ nav {
 
 /* Financers */
 
-.financers {
-  text-align: center;
-}
-
 .financers__text {
   margin-inline: auto;
 }
 
 .financers__logos {
-  margin: var(--spacing-500) auto;
+  margin-inline: auto;
   padding-block: var(--spacing-300);
   max-width: 1000px;
   white-space: nowrap;
@@ -540,4 +543,34 @@ nav {
 .financers__logos-logo {
   flex: 0 0 auto;
   height: 50px;
+}
+
+/* FAQs */
+
+.faq__text {
+  margin-inline: auto;
+}
+
+.faq__questions {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.faq__questions-single {
+  cursor: pointer;
+
+  border: var(--border-100);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.faq__questions-single-answer {
+  padding-top: var(--spacing-200);
+  display: none;
+}
+
+.faq__questions-single-answer[opened] {
+  display: block;
 }
