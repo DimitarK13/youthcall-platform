@@ -26,7 +26,6 @@
   --heading-fs-900: 3rem;
   --heading-fs-800: 2rem;
   --heading-fs-700: 1.5rem;
-  --heading-fs-600: 1.25rem;
 
   --body-fs-900: 1.25rem;
   --body-fs-800: 1.125rem;
@@ -284,10 +283,6 @@ button {
   font-size: var(--heading-fs-700);
   color: var(--primary-clr-400);
   font-weight: var(--bold-fw);
-}
-
-.header-s {
-  font-size: var(--heading-fs-600);
 }
 
 .body-m {
@@ -748,4 +743,40 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--spacing-300);
+}
+
+/* Posts */
+
+.my-posts {
+  margin-top: var(--spacing-600);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-600);
+  justify-content: center;
+}
+
+.my-posts__post {
+  max-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.my-posts__post-image {
+  aspect-ratio: 16 / 5;
+  object-fit: cover;
+  border: var(--border-400);
+  border-radius: 10px;
+}
+
+.my-posts__post-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-posts__post-btn span {
+  font-size: var(--heading-fs-800);
 }
