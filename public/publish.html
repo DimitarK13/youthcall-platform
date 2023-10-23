@@ -73,81 +73,109 @@
       </div>
     </nav>
 
-    <main>
-      <h1>Publish Page</h1>
-    </main>
-
-    <footer>
+    <main class="margin-block--xl">
       <div class="container">
-        <div class="footer background-dark">
-          <div class="footer__content">
-            <div class="footer__content-data">
-              <img
-                src="assets/images/youthcall-logo.svg"
-                alt="YouthCall Logo"
-                class="logo footer__content-data-logo"
+        <form class="new-post" action="/" method="post">
+          <div class="new-post__inputs">
+            <div class="input-field">
+              <label class="input-field__label" for="type">Вид на пост</label>
+              <select class="input-field__input" name="type" id="type">
+                <option value="course">Обука</option>
+                <option value="project">Проект</option>
+                <option value="activity">Активност</option>
+                <option value="volunteer">Волонтерство</option>
+              </select>
+            </div>
+            <div class="input-field">
+              <label class="input-field__label" for="name">Име на настан</label>
+              <input
+                class="input-field__input"
+                type="text"
+                name="name"
+                id="name"
+                autocomplete="off"
               />
-
-              <p class="footer__content-data-paragraph">
-                Aктуелни информации за можности за млади во нашиот регион,
-                вклучувајќи ги Еразмус+ проектите, волонтерствa и настани.
-              </p>
             </div>
-            <div class="footer__content-links">
-              <ul class="footer__content-links-list">
-                <li class="footer__content-links-list-item">
-                  <a href="index.html">Почетна</a>
-                </li>
-                <li class="footer__content-links-list-item">
-                  <a href="about.html">За Проектот</a>
-                </li>
-              </ul>
-
-              <ul class="footer__content-links-list">
-                <li class="footer__content-links-list-item">
-                  <a href="">Обуки</a>
-                </li>
-                <li class="footer__content-links-list-item">
-                  <a href="">Проекти</a>
-                </li>
-                <li class="footer__content-links-list-item">
-                  <a href="">Активности</a>
-                </li>
-                <li class="footer__content-links-list-item">
-                  <a href="">Волонтерства</a>
-                </li>
-                <li class="footer__content-links-list-item">
-                  <a href="documents.html">Документи</a>
-                </li>
-              </ul>
-
-              <ul class="footer__content-links-list">
-                <li class="footer__content-links-list-item">
-                  <a href="login.html">Најави Се</a>
-                </li>
-                <li class="footer__content-links-list-item">
-                  <a href="publish.html">Нов Пост</a>
-                </li>
-                <li class="footer__content-links-list-item">
-                  <a href="">Мои Постови</a>
-                </li>
-              </ul>
+            <div class="input-field">
+              <label class="input-field__label" for="where">Каде</label>
+              <input
+                class="input-field__input"
+                type="text"
+                name="where"
+                id="where"
+                autocomplete="off"
+              />
             </div>
-          </div>
-
-          <div class="footer__copyright">
-            <p class="footer__copyright-copyright">
-              Copyright &copy; <span>2023</span> YouthCall. All rights reserved.
-            </p>
-            <p class="footer__copyright-developedby">
-              Developed by
-              <a href="https://dimitark.com" target="_blank"
-                >Dimitar Kalapocev</a
+            <div class="input-field">
+              <label class="input-field__label" for="when">Кога</label>
+              <input
+                class="input-field__input"
+                type="date"
+                name="when"
+                id="when"
+                autocomplete="off"
+              />
+            </div>
+            <div class="input-field">
+              <label class="input-field__label" for="who">Кој</label>
+              <input
+                class="input-field__input"
+                type="text"
+                name="who"
+                id="who"
+                autocomplete="off"
+              />
+            </div>
+            <div class="input-field">
+              <label class="input-field__label" for="deadline"
+                >Краен рок за пријавување</label
               >
-            </p>
+              <input
+                class="input-field__input"
+                type="date"
+                name="deadline"
+                id="deadline"
+              />
+            </div>
+            <div class="input-field">
+              <label class="input-field__label" for="link"
+                >Линк за пријавување</label
+              >
+              <input
+                class="input-field__input"
+                type="text"
+                name="link"
+                id="link"
+              />
+            </div>
+            <div class="input-field">
+              <label class="input-field__label" for="image">Слика</label>
+              <input
+                class="input-field__input"
+                type="file"
+                name="image"
+                id="image"
+              />
+            </div>
+            <div class="input-field input-textarea">
+              <label class="input-field__label" for="description"
+                >Дескрипција</label
+              >
+              <textarea
+                class="input-field__input"
+                name="description"
+                id="description"
+                rows="7"
+                cols="30"
+              ></textarea>
+            </div>
+
+            <button class="input-field__btn btn btn--primary" type="submit">
+              Објави
+            </button>
           </div>
-        </div>
+        </form>
       </div>
-    </footer>
+    </main>
   </body>
 </html>

@@ -105,6 +105,10 @@ select {
   font: inherit;
 }
 
+textarea {
+  resize: vertical;
+}
+
 button {
   background-color: transparent;
   border: none;
@@ -621,15 +625,32 @@ nav {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: var(--border-200);
+  width: 100%;
 }
 
 .input-field__btn {
   margin-top: var(--spacing-500);
+  width: max-content;
+}
+
+.new-post__inputs {
+  display: grid;
+  gap: var(--spacing-400) var(--spacing-600);
+  max-width: 1080px;
+  margin-inline: auto;
 }
 
 @media (min-width: 996px) {
   .login {
     flex-direction: row;
+  }
+
+  .new-post__inputs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .input-textarea {
+    grid-column: span 2;
   }
 }
 
