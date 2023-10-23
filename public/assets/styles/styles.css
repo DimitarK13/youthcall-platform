@@ -710,3 +710,21 @@ nav {
   object-fit: cover;
   object-position: top;
 }
+
+.e-404 {
+  display: grid;
+  place-content: center;
+}
+
+.e-404__heading {
+  font-size: 142px;
+}
+
+.buttons-group {
+  margin-top: var(--spacing-400);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-300);
+}
