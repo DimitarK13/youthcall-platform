@@ -518,6 +518,10 @@ nav {
 
 .our-goal__container-image {
   margin-inline: auto;
+  width: 450px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 80% 50%;
 }
 
 .our-goal__container-content {
