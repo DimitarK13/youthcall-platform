@@ -27,3 +27,31 @@ faqs.forEach((single) => {
       .toggleAttribute('opened');
   });
 });
+
+const activeCardCourse = document.querySelector('.active-card--course');
+const activeCardProject = document.querySelector('.active-card--project');
+const activeCardActivity = document.querySelector('.active-card--activity');
+const activeCardVolunteer = document.querySelector('.active-card--volunteer');
+
+const getPosts = async () => {
+  try {
+    const data = await fetch('http://localhost:7777/api/data');
+    const posts = await data.json();
+
+    const activityPosts = posts.data.filter((post) => post.type === 'activity');
+    const coursePosts = posts.data.filter((post) => post.type === 'course');
+    const projectPosts = posts.data.filter((post) => post.type === 'project');
+    const volunteerPosts = posts.data.filter(
+      (post) => post.type === 'volunteer'
+    );
+
+    activeCardCourse.textContent = coursePosts.length;
+    activeCardProject.textContent = projectPosts.length;
+    activeCardActivity.textContent = activityPosts.length;
+    activeCardVolunteer.textContent = volunteerPosts.length;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+getPosts();
