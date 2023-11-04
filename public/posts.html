@@ -90,106 +90,7 @@
       </header>
 
       <div class="container margin-block--xl posts-container">
-        <section class="posts" aria-label="Posts">
-          <div class="posts__post post-single">
-            <a href="#" class="post-single__account-link body-s">
-              Центар за анализи и истражување Новус
-            </a>
-            <img
-              class="post-single__image"
-              src="assets/images/post-test.png"
-              alt=""
-            />
-            <h3 class="header-m post-single__heading">10 години Новус</h3>
-            <p class="post-single__description">
-              Lorem ipsum dolor sit amet consectetur. Egestas a ultrices amet
-              turpis viverra ut cursus convallis. Mattis amet scelerisque risus
-              dignissim. Elementum risus neque ultricies fringilla consectetur
-              aliquam amet amet est. A gravida pharetra rhoncus urna facilisi.
-            </p>
-
-            <div class="post-single__info">
-              <p class="post-single__where">
-                <span>Каде:</span> Канцеларија Новус
-              </p>
-              <p class="post-single__when"><span>Кога:</span> 30.09.2023</p>
-              <p class="post-single__who"><span>Кој:</span> 15-29 години</p>
-              <p class="post-single__deadline">
-                <span>Краен рок:</span> 28.09.2023
-              </p>
-            </div>
-
-            <a href="#" class="post-single__link btn btn--primary"
-              >Пријави се</a
-            >
-          </div>
-
-          <div class="posts__post post-single">
-            <a href="#" class="post-single__account-link body-s">
-              Центар за анализи и истражување Новус
-            </a>
-            <img
-              class="post-single__image"
-              src="assets/images/post-test.png"
-              alt=""
-            />
-            <h3 class="header-m post-single__heading">10 години Новус</h3>
-            <p class="post-single__description">
-              Lorem ipsum dolor sit amet consectetur. Egestas a ultrices amet
-              turpis viverra ut cursus convallis. Mattis amet scelerisque risus
-              dignissim. Elementum risus neque ultricies fringilla consectetur
-              aliquam amet amet est. A gravida pharetra rhoncus urna facilisi.
-            </p>
-
-            <div class="post-single__info">
-              <p class="post-single__where">
-                <span>Каде:</span> Канцеларија Новус
-              </p>
-              <p class="post-single__when"><span>Кога:</span> 30.09.2023</p>
-              <p class="post-single__who"><span>Кој:</span> 15-29 години</p>
-              <p class="post-single__deadline">
-                <span>Краен рок:</span> 28.09.2023
-              </p>
-            </div>
-
-            <a href="#" class="post-single__link btn btn--primary"
-              >Пријави се</a
-            >
-          </div>
-
-          <div class="posts__post post-single">
-            <a href="#" class="post-single__account-link body-s">
-              Центар за анализи и истражување Новус
-            </a>
-            <img
-              class="post-single__image"
-              src="assets/images/post-test.png"
-              alt=""
-            />
-            <h3 class="header-m post-single__heading">10 години Новус</h3>
-            <p class="post-single__description">
-              Lorem ipsum dolor sit amet consectetur. Egestas a ultrices amet
-              turpis viverra ut cursus convallis. Mattis amet scelerisque risus
-              dignissim. Elementum risus neque ultricies fringilla consectetur
-              aliquam amet amet est. A gravida pharetra rhoncus urna facilisi.
-            </p>
-
-            <div class="post-single__info">
-              <p class="post-single__where">
-                <span>Каде:</span> Канцеларија Новус
-              </p>
-              <p class="post-single__when"><span>Кога:</span> 30.09.2023</p>
-              <p class="post-single__who"><span>Кој:</span> 15-29 години</p>
-              <p class="post-single__deadline">
-                <span>Краен рок:</span> 28.09.2023
-              </p>
-            </div>
-
-            <a href="#" class="post-single__link btn btn--primary"
-              >Пријави се</a
-            >
-          </div>
-        </section>
+        <section class="posts" aria-label="Posts"></section>
 
         <aside class="advertisements">
           <div class="advertisement background-light body-m">
@@ -284,16 +185,61 @@
     </footer>
 
     <script>
-      // Get the current URL
-      var currentURL = window.location.href;
-      var url = new URL(currentURL);
+      const currentURL = window.location.href;
+      const url = new URL(currentURL);
+      const typeValue = url.searchParams.get('type');
 
-      // Get the value of the 'type' parameter
-      var typeValue = url.searchParams.get('type');
+      const printPosts = async (type) => {
+        try {
+          const postsContainer = document.querySelector('.posts');
+          const data = await fetch(
+            `http://localhost:7777/api/data?type=${type}`
+          );
+          const posts = await data.json();
 
-      // Check if the 'type' parameter exists
+          posts.data.forEach((post) => {
+            console.log(post);
+            const html = `
+            <div class="posts__post post-single" id="${post._id}">
+              <a href="#" class="post-single__account-link body-s">
+                Центар за анализи и истражување Новус
+              </a>
+              <img
+                class="post-single__image"
+                src="${post.image}"
+                alt=""
+              />
+              <h3 class="header-m post-single__heading">${post.name}</h3>
+              <p class="post-single__description">
+                ${post.description}
+              </p>
+
+              <div class="post-single__info">
+                <p class="post-single__where">
+                  <span>Каде:</span> ${post.where}
+                </p>
+                <p class="post-single__when"><span>Кога:</span> ${post.when}</p>
+                <p class="post-single__who"><span>Кој:</span> ${post.who}</p>
+                <p class="post-single__deadline">
+                  <span>Краен рок:</span> ${post.deadline}
+                </p>
+              </div>
+
+              <a href="${post.link}" target="_blank" class="post-single__link btn btn--primary"
+                >Пријави се</a
+              >
+            </div>
+          `;
+
+            postsContainer.insertAdjacentHTML('afterbegin', html);
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
       if (typeValue) {
-        console.log('Type is: ' + typeValue);
+        printPosts(typeValue);
       } else {
         console.log('Type parameter not found in the URL');
       }

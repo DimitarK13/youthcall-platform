@@ -2,7 +2,19 @@ const Post = require('../models/Post');
 
 const getPosts = async (req, res) => {
   try {
-    const posts = await Post.find({});
+    const { type } = req.query;
+    const allPosts = await Post.find({});
+
+    if (!type) {
+      res.status(200).json({
+        success: true,
+        data: allPosts,
+      });
+
+      return;
+    }
+
+    const posts = allPosts.filter((data) => data.type === type);
     res.status(200).json({
       success: true,
       data: posts,
