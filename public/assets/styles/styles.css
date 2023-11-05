@@ -772,7 +772,6 @@ nav {
 .my-posts__post-image {
   aspect-ratio: 16 / 5;
   object-fit: cover;
-  border: var(--border-400);
   border-radius: 10px;
 }
 
@@ -794,15 +793,18 @@ nav {
 }
 
 .posts {
+  width: 100%;
+  max-width: 650px;
+
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--spacing-800);
 }
 
 .post-single {
   display: flex;
   flex-direction: column;
-  max-width: 650px;
 }
 
 .post-single__account-link {
@@ -814,7 +816,6 @@ nav {
 .post-single__image {
   aspect-ratio: 16 / 5;
   object-fit: cover;
-  border: var(--border-400);
   border-radius: 10px;
   margin-bottom: 1rem;
 }
@@ -866,5 +867,20 @@ nav {
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: flex-start;
+  }
+}
+
+.loader {
+  border: 1rem solid var(--primary-clr-100);
+  border-top: 1rem solid var(--primary-clr-400);
+  border-radius: 50%;
+  width: 5rem;
+  aspect-ratio: 1;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
   }
 }

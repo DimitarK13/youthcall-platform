@@ -90,7 +90,9 @@
       </header>
 
       <div class="container margin-block--xl posts-container">
-        <section class="posts" aria-label="Posts"></section>
+        <section class="posts" aria-label="Posts">
+          <div class="loader"></div>
+        </section>
 
         <aside class="advertisements">
           <div class="advertisement background-light body-m">
@@ -198,7 +200,6 @@
           const posts = await data.json();
 
           posts.data.forEach((post) => {
-            console.log(post);
             const html = `
             <div class="posts__post post-single" id="${post._id}">
               <a href="#" class="post-single__account-link body-s">
@@ -231,6 +232,7 @@
             </div>
           `;
 
+            postsContainer.innerHTML = '';
             postsContainer.insertAdjacentHTML('afterbegin', html);
           });
         } catch (err) {
