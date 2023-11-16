@@ -193,6 +193,7 @@
 
       const printPosts = async (type) => {
         try {
+          console.log('Test');
           const postsContainer = document.querySelector('.posts');
           const data = await fetch(
             `http://localhost:7777/api/data?type=${type}`
@@ -232,11 +233,12 @@
             </div>
           `;
 
-            postsContainer.innerHTML = '';
             postsContainer.insertAdjacentHTML('afterbegin', html);
           });
         } catch (err) {
           console.error(err);
+        } finally {
+          document.querySelector('.loader').style.display = 'none';
         }
       };
 

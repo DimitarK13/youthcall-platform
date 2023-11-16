@@ -110,6 +110,7 @@
             <button class="input-field__btn btn btn--primary" type="submit">
               Најави Се
             </button>
+            <span class="error-message"></span>
           </form>
 
           <div class="login__learn-more">
@@ -231,5 +232,49 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      const form = document.querySelector('.login__form');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const username = document.querySelector('#username').value;
+        const password = document.querySelector('#password').value;
+
+        const errorMessage = document.querySelector('.error-message');
+
+        const formData =
+          'username=' +
+          encodeURIComponent(username) +
+          '&password=' +
+          encodeURIComponent(password);
+
+        fetch('http://localhost:7777/users/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (!data.success) return (errorMessage.textContent = data.data);
+
+            errorMessage.textContent = '';
+
+            sessionStorage.setItem('loggedIn', data.data.loggedIn);
+            sessionStorage.setItem('username', data.data.username);
+            sessionStorage.setItem('accountName', data.data.accountName);
+
+            window.location.replace('/');
+          })
+          .catch((error) => {
+            console.log('Error' + error);
+            errorMessage.textContent = error;
+          });
+      });
+    </script>
   </body>
 </html>

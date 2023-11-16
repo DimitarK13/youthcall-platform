@@ -633,6 +633,12 @@ nav {
   width: max-content;
 }
 
+.error-message {
+  margin-left: 1rem;
+  color: var(--error-clr);
+  font-weight: var(--semibold-fw);
+}
+
 .new-post__inputs {
   display: grid;
   gap: var(--spacing-400) var(--spacing-600);
