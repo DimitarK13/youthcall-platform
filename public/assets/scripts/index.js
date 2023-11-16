@@ -35,7 +35,7 @@ const activeCardVolunteer = document.querySelector('.active-card--volunteer');
 
 const getPosts = async () => {
   try {
-    const data = await fetch('http://localhost:7777/api/data');
+    const data = await fetch('/api/data');
     const posts = await data.json();
 
     const activityPosts = posts.data.filter((post) => post.type === 'activity');

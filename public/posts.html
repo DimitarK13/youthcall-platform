@@ -193,11 +193,8 @@
 
       const printPosts = async (type) => {
         try {
-          console.log('Test');
           const postsContainer = document.querySelector('.posts');
-          const data = await fetch(
-            `http://localhost:7777/api/data?type=${type}`
-          );
+          const data = await fetch(`/api/data?type=${type}`);
           const posts = await data.json();
 
           posts.data.forEach((post) => {

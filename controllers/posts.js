@@ -2,25 +2,58 @@ const Post = require('../models/Post');
 
 const getPosts = async (req, res) => {
   try {
-    const { type } = req.query;
-    const allPosts = await Post.find({});
+    const { type, username } = req.query;
 
-    if (!type) {
-      res.status(200).json({
+    if (!type && !username) {
+      const allPosts = await Post.find({});
+      return res.status(200).json({
         success: true,
         data: allPosts,
       });
-
-      return;
     }
 
-    const posts = allPosts.filter((data) => data.type === type);
-    res.status(200).json({
+    let filteredPosts = [];
+
+    if (username) {
+      const allPosts = await Post.find({});
+      filteredPosts = allPosts.filter((data) => {
+        return data.username === username;
+      });
+
+      if (filteredPosts.length === 0) {
+        return res.status(404).json({
+          success: false,
+          data: `No posts found for username ${username}`,
+        });
+      }
+    }
+
+    if (type) {
+      const postsByType = await Post.find({ type });
+      filteredPosts = filteredPosts.length
+        ? filteredPosts.filter((post) =>
+            postsByType.some((p) => p._id.toString() === post._id.toString())
+          )
+        : postsByType;
+
+      if (filteredPosts.length === 0) {
+        return res.status(404).json({
+          success: false,
+          data: `No posts found for type ${type}`,
+        });
+      }
+    }
+
+    return res.status(200).json({
       success: true,
-      data: posts,
+      data: filteredPosts,
     });
   } catch (err) {
     console.error(err);
+    return res.status(500).json({
+      success: false,
+      data: 'Server Error',
+    });
   }
 };
 
@@ -37,7 +70,7 @@ const newPost = async (req, res) => {
   }
 };
 
-const deletePost = async (req, res, next) => {
+const deletePost = async (req, res) => {
   try {
     const { id: postID } = req.params;
     const post = await Post.findOneAndDelete({ _id: postID });
