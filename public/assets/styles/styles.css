@@ -628,6 +628,10 @@ nav {
   width: 100%;
 }
 
+.input-field__input--invalid {
+  border-color: var(--error-clr);
+}
+
 .input-field__btn {
   margin-top: var(--spacing-500);
   width: max-content;

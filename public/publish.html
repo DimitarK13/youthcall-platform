@@ -161,6 +161,7 @@
                 type="file"
                 name="image"
                 id="image"
+                accept="image/png, image/jpeg"
               />
             </div>
             <div class="input-field input-textarea">
@@ -179,9 +180,149 @@
             <button class="input-field__btn btn btn--primary" type="submit">
               Објави
             </button>
+            <span class="error-message"></span>
           </div>
         </form>
       </div>
     </main>
+
+    <script>
+      const form = document.querySelector('.new-post');
+      const type = document.querySelector('#type');
+      const name = document.querySelector('#name');
+      const where = document.querySelector('#where');
+      const when = document.querySelector('#when');
+      const who = document.querySelector('#who');
+      const deadline = document.querySelector('#deadline');
+      const link = document.querySelector('#link');
+      const image = document.querySelector('#image');
+      const description = document.querySelector('#description');
+      const errorMessage = document.querySelector('.error-message');
+
+      form.addEventListener('change', function () {
+        validateFields();
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const errorMessage = document.querySelector('.error-message');
+
+        if (validateFields()) {
+          errorMessage.textContent = '';
+
+          const formData = `type=${encodeURIComponent(
+            type.value
+          )}&name=${encodeURIComponent(name.value)}&where=${encodeURIComponent(
+            where.value
+          )}&when=${encodeURIComponent(when.value)}&who=${encodeURIComponent(
+            who.value
+          )}&deadline=${encodeURIComponent(
+            deadline.value
+          )}&link=${encodeURIComponent(link.value)}&image=${encodeURIComponent(
+            image.files[0]
+          )}&description=${encodeURIComponent(
+            description.value
+          )}&username=associationnovus`;
+
+          fetch('/api/data', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (!data.success) return (errorMessage.textContent = data.data);
+
+              window.location.replace('/');
+            })
+            .catch((error) => {
+              console.log('Error' + error);
+              errorMessage.textContent = error;
+            });
+        } else {
+          errorMessage.textContent =
+            'Please fill in all required fields correctly.';
+        }
+      });
+
+      function validateFields() {
+        const fields = [type, name, where, who, deadline, link, description];
+
+        let isValid = true;
+
+        fields.forEach((field) => {
+          if (!field.value.trim()) {
+            field.classList.add('input-field__input--invalid');
+            isValid = false;
+          } else {
+            field.classList.remove('input-field__input--invalid');
+          }
+        });
+
+        const today = new Date().toISOString().split('T')[0];
+        const tomorrowISO = new Date(Date.now() + 86400000)
+          .toISOString()
+          .split('T')[0];
+
+        if (when.value < tomorrowISO || when.value === today) {
+          when.classList.add('input-field__input--invalid');
+          errorMessage.textContent = 'When date cannot be before today';
+          isValid = false;
+        } else {
+          when.classList.remove('input-field__input--invalid');
+        }
+
+        if (deadline.value < tomorrowISO || deadline.value === today) {
+          deadline.classList.add('input-field__input--invalid');
+          errorMessage.textContent = 'Deadline cannot be before today';
+          isValid = false;
+        } else {
+          deadline.classList.remove('input-field__input--invalid');
+        }
+
+        if (link && !isURL(link.value.trim())) {
+          link.classList.add('input-field__input--invalid');
+          isValid = false;
+        } else {
+          link.classList.remove('input-field__input--invalid');
+        }
+
+        if (!image.files || !image.files[0]) {
+          image.classList.add('input-field__input--invalid');
+          isValid = false;
+        } else {
+          const maxSize = 5 * 1024 * 1024;
+          if (image.files[0].size > maxSize) {
+            image.classList.add('input-field__input--invalid');
+            errorMessage.textContent = 'Image cannot be bigger than 5mb';
+            isValid = false;
+          } else {
+            image.classList.remove('input-field__input--invalid');
+          }
+        }
+
+        if (
+          description.value.trim().length === 0 ||
+          description.value.length > 500
+        ) {
+          description.classList.add('input-field__input--invalid');
+          errorMessage.textContent = `Description shouldn't be empty or over 500 characters`;
+          isValid = false;
+        } else {
+          description.classList.remove('input-field__input--invalid');
+        }
+
+        return isValid;
+      }
+
+      function isURL(str) {
+        const pattern =
+          /^(https?:\/\/)?(www\.)?([\w-]+\.)+([a-z]{2,})+(\/[\w-]+)*(\?.*)?$/;
+        return pattern.test(str);
+      }
+    </script>
   </body>
 </html>
