@@ -86,7 +86,12 @@ const deletePost = async (req, res) => {
         .status(404)
         .json({ success: false, msg: `no post with id ${postID}` });
 
-    res.status(200).json({ success: true, data: `Deleted ${post.name}` });
+    res
+      .status(200)
+      .json({
+        success: true,
+        data: `Пост ${post.name} беше успешно избришан.`,
+      });
   } catch (err) {
     console.error(err);
   }

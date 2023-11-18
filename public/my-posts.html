@@ -172,7 +172,7 @@
           const data = await fetch(`/api/data?username=${username}`);
           const posts = await data.json();
 
-          posts.data.forEach((post) => {
+          posts.data.filteredPosts.forEach((post) => {
             const html = `
             <div class="my-posts__post">
             <img
@@ -213,7 +213,14 @@
           }
 
           const data = await response.json();
-          console.log('Post deleted:', data);
+          myPostsContainer.insertAdjacentHTML(
+            'beforebegin',
+            `<p class='text--center'>${data.data}</p>`
+          );
+
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
         } catch (err) {
           console.error(err);
         }
