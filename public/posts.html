@@ -82,10 +82,7 @@
     <main>
       <header class="text--center padding-block--xl background-primary">
         <div class="container">
-          <h1 class="header-xl">Вид на постови</h1>
-          <p class="text--s margin-inline--auto">
-            Какви видови на постови може да најдат на оваа страна
-          </p>
+          <h1 class="header-xl post-type"></h1>
         </div>
       </header>
 
@@ -194,10 +191,27 @@
       const printPosts = async (type) => {
         try {
           const postsContainer = document.querySelector('.posts');
+          const postsHeader = document.querySelector('.post-type');
           const data = await fetch(`/api/data?type=${type}`);
           const posts = await data.json();
 
-          posts.data.forEach((post) => {
+          if (posts.data.header) {
+            if (posts.data.header === 'course')
+              postsHeader.textContent = 'Обуки';
+            if (posts.data.header === 'activity')
+              postsHeader.textContent = 'Активности';
+            if (posts.data.header === 'project')
+              postsHeader.textContent = 'Проекти';
+            if (posts.data.header === 'volunteer')
+              postsHeader.textContent = 'Волонтерства';
+          }
+
+          if (posts.data.message) {
+            postsContainer.innerHTML = `<h3 class="header-m text--center margin-inline--auto">${posts.data.message}</h3>`;
+            return;
+          }
+
+          posts.data.filteredPosts.forEach((post) => {
             const html = `
             <div class="posts__post post-single" id="${post._id}">
               <a href="#" class="post-single__account-link body-s">

@@ -39,14 +39,20 @@ const getPosts = async (req, res) => {
       if (filteredPosts.length === 0) {
         return res.status(404).json({
           success: false,
-          data: `No posts found for type ${type}`,
+          data: {
+            message: `Во моментот нема активни проекти од овој вид. Ве молиме обидете се со друг вид на проекти.`,
+            header: type,
+          },
         });
       }
     }
 
     return res.status(200).json({
       success: true,
-      data: filteredPosts,
+      data: {
+        filteredPosts,
+        header: type,
+      },
     });
   } catch (err) {
     console.error(err);
