@@ -181,6 +181,7 @@
               Објави
             </button>
             <span class="error-message"></span>
+            <span class="success-message header-m"></span>
           </div>
         </form>
       </div>
@@ -208,6 +209,7 @@
         e.preventDefault();
 
         const errorMessage = document.querySelector('.error-message');
+        const successMessage = document.querySelector('.success-message');
 
         if (validateFields()) {
           errorMessage.textContent = '';
@@ -235,9 +237,12 @@
           })
             .then((response) => response.json())
             .then((data) => {
-              if (!data.success) return (errorMessage.textContent = data.data);
+              errorMessage.style.display = 'none';
+              successMessage.textContent = data.data;
 
-              window.location.replace('/');
+              setTimeout(() => {
+                location.replace('/my-posts.html');
+              }, 2000);
             })
             .catch((error) => {
               console.log('Error' + error);
