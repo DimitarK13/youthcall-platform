@@ -198,6 +198,7 @@
       const image = document.querySelector('#image');
       const description = document.querySelector('#description');
       const errorMessage = document.querySelector('.error-message');
+      const username = sessionStorage.getItem('username');
 
       form.addEventListener('change', function () {
         validateFields();
@@ -223,7 +224,7 @@
             image.files[0]
           )}&description=${encodeURIComponent(
             description.value
-          )}&username=associationnovus`;
+          )}&username=${username}`;
 
           fetch('/api/data', {
             method: 'POST',
