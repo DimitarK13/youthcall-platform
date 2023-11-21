@@ -168,27 +168,31 @@
       const getPostsByUsername = async () => {
         try {
           const username = sessionStorage.getItem('username');
-
           const data = await fetch(`/api/data?username=${username}`);
           const posts = await data.json();
 
           posts.data.filteredPosts.forEach((post) => {
-            const html = `
-            <div class="my-posts__post">
-            <img
-              class="my-posts__post-image"
-              src="${post.image}"
-              alt=""
-            />
-            <div class="my-posts__post-content">
-              <h2 class="my-posts__post-heading header-m">${post.name}</h2>
+            const imageBlob = new Blob([new Uint8Array(post.image.data.data)], {
+              type: post.image.contentType,
+            });
 
-              <button class="my-posts__post-btn" data-post-id="${post._id}">
-                <span class="material-symbols-outlined"> delete </span>
-              </button>
-            </div>
-          </div>
-          `;
+            const imageUrl = URL.createObjectURL(imageBlob);
+
+            const html = `
+              <div class="my-posts__post">
+                <img
+                  class="my-posts__post-image"
+                  src="${imageUrl}"
+                  alt="${post.name}"
+                />
+                <div class="my-posts__post-content">
+                  <h2 class="my-posts__post-heading header-m">${post.name}</h2>
+                  <button class="my-posts__post-btn" data-post-id="${post._id}">
+                    <span class="material-symbols-outlined"> delete </span>
+                  </button>
+                </div>
+              </div>
+            `;
 
             myPostsContainer.insertAdjacentHTML('afterbegin', html);
           });

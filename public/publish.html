@@ -81,7 +81,12 @@
 
     <main class="margin-block--xl">
       <div class="container">
-        <form class="new-post" action="/" method="post">
+        <form
+          class="new-post"
+          action="/"
+          method="post"
+          enctype="multipart/form-data"
+        >
           <div class="new-post__inputs">
             <div class="input-field">
               <label class="input-field__label" for="type">Вид на пост</label>
@@ -214,25 +219,20 @@
         if (validateFields()) {
           errorMessage.textContent = '';
 
-          const formData = `type=${encodeURIComponent(
-            type.value
-          )}&name=${encodeURIComponent(name.value)}&where=${encodeURIComponent(
-            where.value
-          )}&when=${encodeURIComponent(when.value)}&who=${encodeURIComponent(
-            who.value
-          )}&deadline=${encodeURIComponent(
-            deadline.value
-          )}&link=${encodeURIComponent(link.value)}&image=${encodeURIComponent(
-            image.files[0]
-          )}&description=${encodeURIComponent(
-            description.value
-          )}&username=${username}`;
+          const formData = new FormData();
+          formData.append('type', type.value);
+          formData.append('name', name.value);
+          formData.append('where', where.value);
+          formData.append('when', when.value);
+          formData.append('who', who.value);
+          formData.append('deadline', deadline.value);
+          formData.append('link', link.value);
+          formData.append('image', image.files[0]); // Assuming 'image' is an input element of type file
+          formData.append('description', description.value);
+          formData.append('username', username);
 
           fetch('/api/data', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
             body: formData,
           })
             .then((response) => response.json())

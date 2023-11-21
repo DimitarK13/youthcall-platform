@@ -212,6 +212,12 @@
           }
 
           posts.data.filteredPosts.forEach((post) => {
+            const imageBlob = new Blob([new Uint8Array(post.image.data.data)], {
+              type: post.image.contentType,
+            });
+
+            const imageUrl = URL.createObjectURL(imageBlob);
+
             const html = `
             <div class="posts__post post-single" id="${post._id}">
               <a href="#" class="post-single__account-link body-s">
@@ -219,8 +225,8 @@
               </a>
               <img
                 class="post-single__image"
-                src="${post.image}"
-                alt=""
+                src="${imageUrl}"
+                alt="${post.name}"
               />
               <h3 class="header-m post-single__heading">${post.name}</h3>
               <p class="post-single__description">
