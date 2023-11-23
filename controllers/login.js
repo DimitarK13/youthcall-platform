@@ -28,6 +28,7 @@ const login = async (req, res) => {
         loggedIn: true,
         username,
         accountName: account.name,
+        website: account.website,
       },
     });
   } catch (err) {

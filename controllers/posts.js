@@ -72,14 +72,12 @@ const newPost = async (req, res) => {
   try {
     upload(req, res, async function (err) {
       if (err instanceof multer.MulterError) {
-        // A Multer error occurred when uploading
         console.error(err);
         return res.status(500).json({
           success: false,
           message: 'Error uploading image.',
         });
       } else if (err) {
-        // An unknown error occurred when uploading
         console.error(err);
         return res.status(500).json({
           success: false,
@@ -94,8 +92,8 @@ const newPost = async (req, res) => {
         type: req.body.type,
         name: req.body.name,
         image: {
-          data: imageDetails.buffer, // assuming req.file.buffer contains the image buffer
-          contentType: imageDetails.mimetype, // assuming req.file.mimetype contains the content type
+          data: imageDetails.buffer,
+          contentType: imageDetails.mimetype,
         },
         where: req.body.where,
         when: req.body.when,
@@ -104,9 +102,10 @@ const newPost = async (req, res) => {
         deadline: req.body.deadline,
         description: req.body.description,
         username: req.body.username,
+        website: req.body.website,
+        accountName: req.body.accountName,
       };
 
-      // Assuming 'Post' is your Mongoose model for posts with the provided schema
       const post = await Post.create(newPostData);
 
       res.status(201).json({

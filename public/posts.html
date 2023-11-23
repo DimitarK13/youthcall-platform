@@ -220,8 +220,8 @@
 
             const html = `
             <div class="posts__post post-single" id="${post._id}">
-              <a href="#" class="post-single__account-link body-s">
-                Центар за анализи и истражување Новус
+              <a href="${post.website}" target="_blank" class="post-single__account-link body-s">
+                ${post.accountName}
               </a>
               <img
                 class="post-single__image"

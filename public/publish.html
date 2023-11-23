@@ -205,6 +205,8 @@
       const description = document.querySelector('#description');
       const errorMessage = document.querySelector('.error-message');
       const username = sessionStorage.getItem('username');
+      const website = sessionStorage.getItem('website');
+      const accountName = sessionStorage.getItem('accountName');
 
       form.addEventListener('change', function () {
         validateFields();
@@ -230,6 +232,8 @@
           formData.append('image', image.files[0]); // Assuming 'image' is an input element of type file
           formData.append('description', description.value);
           formData.append('username', username);
+          formData.append('website', website);
+          formData.append('accountName', accountName);
 
           fetch('/api/data', {
             method: 'POST',

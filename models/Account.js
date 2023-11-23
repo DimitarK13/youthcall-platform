@@ -10,9 +10,6 @@ const accountSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  expirationDate: {
-    type: String,
-  },
   website: {
     type: String,
   },
