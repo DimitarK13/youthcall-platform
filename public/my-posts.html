@@ -164,6 +164,13 @@
 
     <script>
       const myPostsContainer = document.querySelector('.my-posts');
+      const username = sessionStorage.getItem('username');
+      const website = sessionStorage.getItem('website');
+      const accountName = sessionStorage.getItem('accountName');
+
+      if (!username && !website && !accountName) {
+        location.replace('/login.html');
+      }
 
       const getPostsByUsername = async () => {
         try {

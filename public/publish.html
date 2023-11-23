@@ -208,6 +208,10 @@
       const website = sessionStorage.getItem('website');
       const accountName = sessionStorage.getItem('accountName');
 
+      if (!username && !website && !accountName) {
+        location.replace('/login.html');
+      }
+
       form.addEventListener('change', function () {
         validateFields();
       });
