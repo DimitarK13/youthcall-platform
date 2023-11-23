@@ -1,3 +1,13 @@
+'use strict';
+const loggedIn = sessionStorage.getItem('loggedIn');
+const hideElementsLogged = document.querySelectorAll('[data-hide="logged"]');
+const hideElementsNotLogged = document.querySelectorAll(
+  '[data-hide="notLogged"]'
+);
+
+if (loggedIn) hideElementsLogged.forEach((el) => el.classList.add('hidden'));
+else hideElementsNotLogged.forEach((el) => el.classList.add('hidden'));
+
 const navToggle = document.querySelector('.nav-toggle');
 const navToggleIcon = navToggle.querySelector('span');
 const navList = document.querySelector('.nav-list');

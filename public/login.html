@@ -69,8 +69,8 @@
             <li class="nav-list-item">
               <a href="documents.html" class="nav-list-link">Документи</a>
             </li>
-            <li class="nav-list-item">
-              <a href="login.html" class="nav-list-link btn btn--primary-light"
+            <li class="nav-list-item" data-hide="logged">
+              <a href="login.html" class="nav-list-link btn btn--secondary"
                 >Најави Се</a
               >
             </li>
@@ -208,10 +208,16 @@
                 <li class="footer__content-links-list-item">
                   <a href="login.html">Најави Се</a>
                 </li>
-                <li class="footer__content-links-list-item">
+                <li
+                  class="footer__content-links-list-item"
+                  data-hide="notLogged"
+                >
                   <a href="publish.html">Нов Пост</a>
                 </li>
-                <li class="footer__content-links-list-item">
+                <li
+                  class="footer__content-links-list-item"
+                  data-hide="notLogged"
+                >
                   <a href="my-posts.html">Мои Постови</a>
                 </li>
               </ul>

@@ -194,6 +194,10 @@ button {
   margin-inline: auto;
 }
 
+.hidden {
+  display: none;
+}
+
 .margin-block--xl {
   margin-block: var(--spacing-900);
 }
@@ -208,6 +212,10 @@ button {
 
 .padding-block--xl {
   padding-block: var(--spacing-900);
+}
+
+.padding-bottom--m {
+  padding-bottom: var(--spacing-400);
 }
 
 .margin-inline--auto {
