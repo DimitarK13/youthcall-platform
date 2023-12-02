@@ -191,6 +191,9 @@ const getPostsByUsername = async () => {
 
 const deletePost = async (postId) => {
   try {
+    const myPostsContainer = document.querySelector('.my-posts');
+    if (!myPostsContainer) return;
+
     const response = await fetch(`/api/data/${postId}`, {
       method: 'DELETE',
       headers: {
