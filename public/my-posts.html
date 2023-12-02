@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="assets/styles/styles.css" />
     <script defer src="assets/scripts/index.js"></script>
   </head>
+
   <body>
     <nav class="background-light-blur">
       <div class="container">
@@ -175,91 +176,5 @@
         </div>
       </div>
     </footer>
-
-    <script>
-      const myPostsContainer = document.querySelector('.my-posts');
-      const username = sessionStorage.getItem('username');
-      const website = sessionStorage.getItem('website');
-      const accountName = sessionStorage.getItem('accountName');
-
-      if (!username && !website && !accountName) {
-        location.replace('/login.html');
-      }
-
-      const getPostsByUsername = async () => {
-        try {
-          const username = sessionStorage.getItem('username');
-          const data = await fetch(`/api/data?username=${username}`);
-          const posts = await data.json();
-
-          posts.data.filteredPosts.forEach((post) => {
-            const imageBlob = new Blob([new Uint8Array(post.image.data.data)], {
-              type: post.image.contentType,
-            });
-
-            const imageUrl = URL.createObjectURL(imageBlob);
-
-            const html = `
-              <div class="my-posts__post">
-                <img
-                  class="my-posts__post-image"
-                  src="${imageUrl}"
-                  alt="${post.name}"
-                />
-                <div class="my-posts__post-content">
-                  <h2 class="my-posts__post-heading header-m">${post.name}</h2>
-                  <button class="my-posts__post-btn" data-post-id="${post._id}">
-                    <span class="material-symbols-outlined"> delete </span>
-                  </button>
-                </div>
-              </div>
-            `;
-
-            myPostsContainer.insertAdjacentHTML('afterbegin', html);
-          });
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.querySelector('.loader').style.display = 'none';
-        }
-      };
-
-      const deletePost = async (postId) => {
-        try {
-          const response = await fetch(`/api/data/${postId}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-
-          const data = await response.json();
-          myPostsContainer.insertAdjacentHTML(
-            'beforebegin',
-            `<p class='text--center'>${data.data}</p>`
-          );
-
-          setTimeout(() => {
-            location.reload();
-          }, 2000);
-        } catch (err) {
-          console.error(err);
-        }
-      };
-
-      myPostsContainer.addEventListener('click', (e) => {
-        const deleteBtn = e.target.closest('.my-posts__post-btn');
-        if (!deleteBtn) return;
-
-        const postId = deleteBtn.dataset.postId;
-        deletePost(postId);
-      });
-
-      getPostsByUsername();
-    </script>
   </body>
 </html>

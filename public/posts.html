@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="assets/styles/styles.css" />
     <script defer src="assets/scripts/index.js"></script>
   </head>
+
   <body>
     <nav class="background-light-blur">
       <div class="container">
@@ -198,88 +199,5 @@
         </div>
       </div>
     </footer>
-
-    <script>
-      const currentURL = window.location.href;
-      const url = new URL(currentURL);
-      const typeValue = url.searchParams.get('type');
-
-      const printPosts = async (type) => {
-        try {
-          const postsContainer = document.querySelector('.posts');
-          const postsHeader = document.querySelector('.post-type');
-          const data = await fetch(`/api/data?type=${type}`);
-          const posts = await data.json();
-
-          if (posts.data.header) {
-            if (posts.data.header === 'course')
-              postsHeader.textContent = 'Обуки';
-            if (posts.data.header === 'activity')
-              postsHeader.textContent = 'Активности';
-            if (posts.data.header === 'project')
-              postsHeader.textContent = 'Проекти';
-            if (posts.data.header === 'volunteer')
-              postsHeader.textContent = 'Волонтерства';
-          }
-
-          if (posts.data.message) {
-            postsContainer.innerHTML = `<h3 class="header-m text--center margin-inline--auto">${posts.data.message}</h3>`;
-            return;
-          }
-
-          posts.data.filteredPosts.forEach((post) => {
-            const imageBlob = new Blob([new Uint8Array(post.image.data.data)], {
-              type: post.image.contentType,
-            });
-
-            const imageUrl = URL.createObjectURL(imageBlob);
-
-            const html = `
-            <div class="posts__post post-single" id="${post._id}">
-              <a href="${post.website}" target="_blank" class="post-single__account-link body-s">
-                ${post.accountName}
-              </a>
-              <img
-                class="post-single__image"
-                src="${imageUrl}"
-                alt="${post.name}"
-              />
-              <h3 class="header-m post-single__heading">${post.name}</h3>
-              <p class="post-single__description">
-                ${post.description}
-              </p>
-
-              <div class="post-single__info">
-                <p class="post-single__where">
-                  <span>Каде:</span> ${post.where}
-                </p>
-                <p class="post-single__when"><span>Кога:</span> ${post.when}</p>
-                <p class="post-single__who"><span>Кој:</span> ${post.who}</p>
-                <p class="post-single__deadline">
-                  <span>Краен рок:</span> ${post.deadline}
-                </p>
-              </div>
-
-              <a href="${post.link}" target="_blank" class="post-single__link btn btn--primary"
-                >Пријави се</a
-              >
-            </div>
-          `;
-
-            postsContainer.insertAdjacentHTML('afterbegin', html);
-          });
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.querySelector('.loader').style.display = 'none';
-        }
-      };
-
-      if (typeValue) {
-        printPosts(typeValue);
-      } else {
-        console.log('Type parameter not found in the URL');
-      }
-    </script>
   </body>
 </html>
