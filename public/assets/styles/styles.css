@@ -390,7 +390,7 @@ nav {
 /* Footer */
 
 .footer {
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   margin-top: 10rem;
 }
@@ -441,7 +441,7 @@ nav {
 
 @media (min-width: 1000px) {
   .footer {
-    padding-inline: 6rem;
+    padding: 2rem 6rem;
   }
 
   .footer__content-links {
@@ -465,7 +465,7 @@ nav {
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: max(100vh, 700px);
   display: flex;
   align-items: center;
 }
@@ -625,10 +625,11 @@ nav {
 }
 
 .login {
-  min-height: 100vh;
+  height: max(100vh, 700px);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 20px;
   align-items: center;
 }
 
@@ -681,6 +682,7 @@ nav {
 @media (min-width: 996px) {
   .login {
     flex-direction: row;
+    justify-content: space-evenly;
   }
 
   .new-post__inputs {
